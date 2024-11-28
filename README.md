@@ -42,6 +42,6 @@ Class materials were used extensively for this assignment, as well as:
 
 ## Usage
 
-The report file is located in the `Report` directory of the repo (`Report/Report.md`). This report provides a comprehensive summary of the neural network model.
+The report file is located in the main directory of the repo (`Report.md`). This report provides a comprehensive summary of the neural network model.
 
 The model `.h5` files are saved to the repo, and are located in the `Output` directory. All images are located in the `images` directory of the repo.
