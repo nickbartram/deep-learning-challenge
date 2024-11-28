@@ -22,11 +22,11 @@ The purpose of this analysis is to help Alphabet Soup select successful applican
 
 ![1732824577471](image/Report/1732824577471.png)
 
-Other preprocessing steps include binning the "APPLICATION_TYPE" and "CLASSIFICATION" columns to limit the number of unique values. Too many unique values could create too much noise for the model. Also all the categorical values were changed to boolean using `.get_dummies` and finally changed to binary integers (0,1) with simple casting `.astype(int)`. Some examples here (view full script file to see full extent of preprocessing):
+Other preprocessing steps include grouping infrequent categories in the "APPLICATION_TYPE" and "CLASSIFICATION" columns to limit the number of unique values. Too many unique values could create too much noise for the model. Also all the categorical values were changed to boolean using `.get_dummies` and finally changed to binary integers (0,1) with simple casting `.astype(int)`. Some examples here (view full script file to see full extent of preprocessing):
 
 ![1732824816913](image/Report/1732824816913.png)
 
-(The above shows the "APPLICATION_TYPE" column being binned to create an "Other" category to help limit the number of unique entries)
+(The above shows the "APPLICATION_TYPE" column being grouped to create an "Other" category to help limit the number of unique entries)
 
 ![1732825096225](image/Report/1732825096225.png)
 
@@ -86,11 +86,11 @@ Similar to the third attempt, I tried binning the "ASK_AMT" column, for similar 
 
 ##### **Seventh Attempt**
 
-Finally I tried adding the "NAMES" column back to the data frame and got surprising results. The accuracy was definitely changing as a result. I tried to bin the "NAMES" column to reduce noise and simplify relationships. This process took a lot of time, the data frame was very large, but finally I saw results:
+Finally I tried adding the "NAME" column back to the data frame and got surprising results. The accuracy was definitely changing as a result. I tried to group less frequent categories in the "NAME" column to reduce noise and simplify relationships. This process took a lot of time, the data frame was very large, but finally I saw results:
 
 ![1732827197482](image/Report/1732827197482.png)
 
-(The above shows the attempt to bin the "NAME" column to reduce unique values. You can see that the "Other" category is massive, this step greatly reduced noise.)
+(The above shows the attempt to group less frequent categories in the "NAME" column to reduce unique values. You can see that the "Other" category is massive, this step greatly reduced noise.)
 
 I also changed the number of neurons, layers and activation functions for this model. From trial and error I noticed that increasing neurons and hidden layers did not achieve much. I greatly lowered the number of neurons, but added a hidden layer. I reduced the number of neurons in a decreasing amount, which I had heard could help streamline the model. I also tried changing the activation function to "sigmoid" as it was supposedly good for binary classification. Finally I greatly reduced the number of epochs down to 30 (not shown), as the model was taking a long time fit properly and the previously mentioned plateauing I noticed from pervious attempts.
 
@@ -102,4 +102,12 @@ Finally, as you can see below, the model yielded an accuracy of 75%:
 
 ## Summary
 
-Overall this model performed well. 75% accuracy is not perfect (1 in 4 will be incorrect) so this would not be acceptable for healthcare. However in this case th model could potentially be helpful for Alphabet Soup, at least as an idea of where these applicants stand.
+Overall this model performed well. 75% accuracy is not perfect so this would not be acceptable for healthcare. However in this case the model could potentially be helpful for Alphabet Soup, at least as an idea of where these applicants stand.
+
+The final optimized model used the "IS_SUCCESSFUL" column as a target, and all the but "EIN" column as features. It grouped infrequent categories in the "APPLICATION_TYPE", "CLASSIFICATION", and "NAME" columns. It used `.get_dummies` and casting to convert categorical data to numeric. The model used 3 hidden layers, using the "relu" activation function for the first layer, then "sigmoid" for the following two layers. It used a bottleneck or funnel-shaped structute, decreasing the number of neurons per hidden layer, to help refine or compress the data representation as it moves through the network.
+
+A more precise model may include more data. 34,000 rows of data is large, however for a neural network it might be a little small. A larger sample size, or training data, could help the model fit with more preision. The model itself could potentially be tweaked further by adding the "EIN" column (similar to how "NAME" was added). This could potentially give the training data a little more to work with. 
+
+Some limitations of this optimization could be related to optimizers. Only the "adam" optimizer was used here, although its learning rate was tuned. Other optimizers could perhaps be used, although "adam" is considered as very good all around optimizer. This is why it was used exlusively. Other potential optimizers to try could be: Adagrad or RMSprop.
+
+I think the main reason this model is performing lower is because of the lack of sufficient data. After hours of tuning the model, I do not believe a combination of neurons, hidden layers, activation functions, and epochs with significantly improve its performance. It is however possible that further tuning could help, it is not out of the question. Simply put, if you want more accuracy, provide more training data to help the model learn.
