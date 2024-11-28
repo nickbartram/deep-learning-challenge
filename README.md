@@ -3,11 +3,11 @@
 
 ## Introduction
 
-This challenge looks at using deep learning to solve classification problems. The challenge looks at a CSV provided by Alphabet Soup, to look at the sucess rates of the orginzations they have funded. Using the binary success target, the CSV features are used to create a neural network model to predict the success of potential applicants. An intial cursory attempt is made to create a neural network model, then several steps are taken to optimize the model.
+This challenge looks at using deep learning to solve classification problems. The challenge looks at a CSV provided by Alphabet Soup, to look at the success rates of the organizations they have funded. Using the binary success target, the CSV features are used to create a neural network model to predict the success of potential applicants. An initial cursory attempt is made to create a neural network model, then several steps are taken to optimize the model.
 
 ## Data
 
-The data consists of a single CSV file provided by Alphabet Soup. The CSV contains data on 34,000 organizations that Alphabet Soup as funded, including columns detailing their binary succcess, their name, ask amount, organization, among others.
+The data consists of a single CSV file provided by Alphabet Soup. The CSV contains data on 34,000 organizations that Alphabet Soup as funded, including columns detailing their binary success, their name, ask amount, organization, among others.
 
 ![1732830256356](image/README/1732830256356.png)
 
@@ -23,7 +23,7 @@ This process was done repeatedly while tuning the model. The final report ("Repo
 
 ## Results
 
-The final result is a model with an accuracy that tests just slightly over 75% accuracy. This was the target model performance, and as such the result was succesful for this challenge. However a 75% accuracy is by no means perfect, themodel could likely be optimized with further tuning.
+The final result is a model with an accuracy that tests just slightly over 75% accuracy. This was the target model performance, and as such the result was successful for this challenge. However, a 75% accuracy is by no means perfect, the model could likely be optimized with further tuning.
 
 ![1732830852213](image/README/1732830852213.png)
 
